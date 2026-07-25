@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Secure Login System</title>
+  <link rel="stylesheet" href="style.css">
+  <link rel="icon" href="data:,">
+</head>
+<body>
+<div class="container">
+
+  <!-- AUTH SECTION -->
+  <div id="auth-section" class="card">
+    <div class="logo">
+      <h1>🔒 Secure Login</h1>
+      <p>Enterprise-grade authentication</p>
+    </div>
+    <div id="auth-error" class="error hidden"></div>
+    <div id="auth-success" class="success hidden"></div>
+    <div class="tabs">
+      <button class="tab-btn active" id="tab-login-btn">Login</button>
+      <button class="tab-btn" id="tab-register-btn">Register</button>
+    </div>
+
+    <!-- Login Form -->
+    <div id="login-tab">
+      <form id="login-form">
+        <div class="form-group">
+          <label for="login-username">Username</label>
+          <input type="text" id="login-username" required>
+        </div>
+        <div class="form-group">
+          <label for="login-password">Password</label>
+          <input type="password" id="login-password" required>
+        </div>
+        <button type="submit" id="login-btn">Login</button>
+      </form>
+    </div>
+
+    <!-- Register Form -->
+    <div id="register-tab" class="hidden">
+      <form id="register-form">
+        <div class="form-group">
+          <label for="reg-username">Username</label>
+          <input type="text" id="reg-username" required>
+          <div class="hint">3–30 chars: letters, numbers, - and _ only</div>
+        </div>
+        <div class="form-group">
+          <label for="reg-email">Email</label>
+          <input type="email" id="reg-email" required>
+        </div>
+        <div class="form-group">
+          <label for="reg-password">Password</label>
+          <input type="password" id="reg-password" required>
+          <div class="reqs">
+            <div class="req" id="r-len">At least 8 characters</div>
+            <div class="req" id="r-up">Uppercase letter (A-Z)</div>
+            <div class="req" id="r-low">Lowercase letter (a-z)</div>
+            <div class="req" id="r-num">Number (0-9)</div>
+            <div class="req" id="r-sp">Special character (@$!%*?&)</div>
+          </div>
+        </div>
+        <button type="submit" id="register-btn">Create Account</button>
+      </form>
+    </div>
+  </div>
+
+  <!-- 2FA VERIFY -->
+  <div id="tfa-section" class="card hidden">
+    <div class="logo">
+      <h1>🔐 2FA Verification</h1>
+      <p>Enter the code from your authenticator app</p>
+    </div>
+    <div id="tfa-error" class="error hidden"></div>
+    <form id="tfa-form">
+      <div class="form-group">
+        <label for="tfa-token">6-digit code</label>
+        <input type="text" id="tfa-token" maxlength="6" required>
+      </div>
+      <button type="submit">Verify Code</button>
+    </form>
+    <button id="back-to-login-btn" class="secondary-btn" style="margin-top:10px;width:100%">← Back to Login</button>
+  </div>
+
+  <!-- DASHBOARD -->
+  <div id="dash-section" class="card hidden">
+    <div class="logo">
+      <h1>✓ Welcome!</h1>
+      <p id="welcome-user">User Dashboard</p>
+    </div>
+    <div id="dash-success" class="success hidden"></div>
+    <div id="dash-error" class="error hidden"></div>
+
+    <div class="sec-box">
+      <h3>🔒 Security Settings</h3>
+      <div class="row">
+        <span>Two-Factor Authentication (2FA)</span>
+        <span class="badge" id="tfa-badge">—</span>
+      </div>
+      <div id="tfa-action-area" style="margin-top:10px"></div>
+    </div>
+
+    <!-- 2FA Setup Panel -->
+    <div id="tfa-setup-box" class="sec-box hidden">
+      <h3>📱 Set Up 2FA</h3>
+      <p class="hint">Scan the QR code with your authenticator app (Google Authenticator, Authy, etc.), then enter the 6-digit code to confirm.</p>
+      <div id="qr-container" style="text-align:center;margin:14px 0"></div>
+      <div class="form-group">
+        <label for="tfa-setup-token">Confirmation Code</label>
+        <input type="text" id="tfa-setup-token" maxlength="6">
+      </div>
+      <div class="btn-row">
+        <button id="confirm-2fa-btn">Confirm &amp; Enable</button>
+        <button id="cancel-2fa-btn" class="secondary-btn">Cancel</button>
+      </div>
+    </div>
+
+    <button id="logout-btn" class="secondary-btn" style="width:100%;margin-top:16px">Logout</button>
+  </div>
+
+</div>
+<script src="app.js"></script>
+</body>
+</html>
